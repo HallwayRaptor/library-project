@@ -11,3 +11,7 @@ function Book(title, author, pages, read) {
 		return `${title} by ${author}, ${pages} pages, ${read}`;
 	};
 }
+
+const testBook = new Book("test book", "test author", 399, "unread");
+
+console.log(testBook.info());
