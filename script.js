@@ -1,22 +1,40 @@
-let myLibrary = [];
+const bookShelf = document.querySelector(".bookshelf");
+const libraryCard = document.querySelector(".library-card");
+const name = document.querySelector("#name");
+const author = document.querySelector("#author");
+const read = document.querySelector("#read");
+const container = document.querySelector(".container");
 
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-	this.info = function () {
-		return `${title} by ${author}, ${pages} pages, ${read}`;
-	};
+const formButton = document.querySelector("form");
+
+function addBookToLibrary() {
+	let newBook = new Book(title.value, author.value, read.value);
+	console.log(newBook);
+	myLibrary.push(newBook);
 }
 
-const title = prompt("Book Title");
-const author = prompt("Author");
-const pages = prompt("Pages");
-const read = prompt("is it read?");
+function addBookToShelf(book) {
+	let bookItem = document.createElement("div");
+	bookItem.classList.add("form-area");
+	bookItem.innerHTML = `
+			<h3>${book.title}</h3>
+			<p>${book.author}</p>
+			<p>${book.read}</p>`
+	container.appendChild(bookItem);
+}
 
-const book1 = new Book(title, author, pages, read);
+formButton.addEventListener("submit", function (e) {
+	e.preventDefault();
+	addBookToLibrary();
+	addBookToShelf(myLibrary[myLibrary.length - 1]);
+});
 
-console.log(book.info());
+let myLibrary = [];
 
-function addBookToLibrary() {}
+class Book {
+	constructor(title, author, read) {
+		this.title = title;
+		this.author = author;
+		this.read = read;
+	}
+}
